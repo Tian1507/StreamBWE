@@ -48,10 +48,11 @@
               <span class="author-block">National Engineering Research Center of Speech and Language Information Processing <br> University of Science and Technology of China<br></span>
             </div> -->
 
-            <div class="column has-text-centered">
-              <div class="publication-links"> 
-                <!--                   Code Link. -->
-                <span class="link-block">
+
+            <!-- <div class="column has-text-centered">
+              <div class="publication-links">  -->
+                  <!--                   Code Link. -->
+                <!-- <span class="link-block">
                   <a href="https://github.com/fliu215/UDSE_Code" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -59,9 +60,9 @@
                   </span>
                   <span>Code</span>
                   </a>
-                </span>
-                <!--                   ArXiv Link -->
-                <span class="link-block">
+                </span> -->
+                  <!--                   ArXiv Link -->
+                <!-- <span class="link-block">
                   <a href="https://arxiv.org/abs/2510.09974" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -71,7 +72,7 @@
                   </a>
                 </span>
               </div>
-            </div>
+            </div> -->
 
         </div>
       </div>
@@ -91,9 +92,9 @@
             By adopting a fully causal architecture and modeling the compact, real-valued MDCT spectrum, the proposed StreamBWE supports low-latency streaming inference while using lightweight modules suitable for real-time, low-resource scenarios.
             In particular, StreamBWE begins by deriving the narrowband MDCT spectrum from the input narrowband speech. 
             A lightweight, fully causal-convolutional SnBeConvNeXt model, that is, a ConvNeXt backbone equipped with SnakeBeta periodic activations, is subsequently employed to estimate the wideband MDCT spectrum, which is finally converted to a waveform via inverse MDCT (IMDCT).
-            We train StreamBWE adversarially with a multi-resolution MDCT discriminator (MR-MDCTD) that judges MDCT spectra across time–frequency scales, and add a frequency-weighted MDCT spectral loss to emphasize high-frequency details.
+            We train StreamBWE adversarially with a multi-resolution MDCT discriminator (MR-MDCTD) that judges MDCT spectra across time-frequency scales, and add a frequency-weighted MDCT spectral loss to emphasize high-frequency details.
             Experimental results indicate that StreamBWE delivers comparable or superior quality and intelligibility on both 16 kHz and 48 kHz target sampling rates, with only 2.57 GFLOPs and under 2.5 ms latency, highlighting both computational efficiency and real-time capability.
-            In addition, cross-domain experiments and downstream applications further validate StreamBWE’s robust generalization to other audio data and its practical deployability within streaming speech-coding pipelines.
+            In addition, cross-domain experiments and downstream applications further validate StreamBWE's robust generalization to other audio data and its practical deployability within streaming speech-coding pipelines.
           </p>
         </div>
       </div>
