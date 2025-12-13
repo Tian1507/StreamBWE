@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>UDSE</title>
+  <title>StreamBWE</title>
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
 
@@ -89,16 +89,13 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            In real-world scenarios, speech signals are inevitably corrupted by various types of interference, making speech enhancement (SE) a critical task for robust speech processing. 
-            However, most existing SE methods only handle a limited range of distortions, such as additive noise, reverberation, or band limitation, while the study of SE under multiple simultaneous distortions remains limited. 
-            This gap affects the generalization and practical usability of SE methods in real-world environments.To address this gap, this paper proposes a novel Universal Discrete-domain SE model called UDSE.
-            UDSE primarily works to enhance speech by predicting clean discrete tokens that are quantized by the residual vector quantizer (RVQ) of a pre-trained neural speech codec and are predicted in accordance with the RVQ rules.
-            Specifically, UDSE first extracts global features from the degraded speech. 
-            Guided by these global features, the clean token prediction for each VQ follows the rules of RVQ, where the prediction of each VQ relies on the results of the preceding ones. 
-            Finally, the predicted clean tokens from all VQs are decoded to reconstruct the clean speech waveform. 
-            During training, the UDSE model employs a teacher-forcing strategy, and is optimized with cross-entropy loss. 
-            Experimental results confirm that the proposed UDSE model can effectively enhance speech degraded by various conventional and unconventional distortions, e.g., additive noise, reverberation, band limitation, clipping, phase distortion, and compression distortion, as well as their combinations. 
-            These results demonstrate the superior universality and practicality of UDSE compared to advanced regression-based SE methods.
+            This paper proposes StreamBWE, a streaming-capable neural model for speech bandwidth extension (BWE), formulated in the modified discrete cosine transform (MDCT) spectral domain. 
+            By adopting a fully causal architecture and modeling the compact, real-valued MDCT spectrum, the proposed StreamBWE supports low-latency streaming inference while using lightweight modules suitable for real-time, low-resource scenarios.
+            In particular, StreamBWE begins by deriving the narrowband MDCT spectrum from the input narrowband speech. 
+            A lightweight, fully causal-convolutional SnBeConvNeXt model, that is, a ConvNeXt backbone equipped with SnakeBeta periodic activations, is subsequently employed to estimate the wideband MDCT spectrum, which is finally converted to a waveform via inverse MDCT (IMDCT).
+            We train StreamBWE adversarially with a multi-resolution MDCT discriminator (MR-MDCTD) that judges MDCT spectra across time–frequency scales, and add a frequency-weighted MDCT spectral loss to emphasize high-frequency details.
+            Experimental results indicate that StreamBWE delivers comparable or superior quality and intelligibility on both 16 kHz and 48 kHz target sampling rates, with only 2.57 GFLOPs and under 2.5 ms latency, highlighting both computational efficiency and real-time capability.
+            In addition, cross-domain experiments and downstream applications further validate StreamBWE’s robust generalization to other audio data and its practical deployability within streaming speech-coding pipelines.
           </p>
         </div>
       </div>
