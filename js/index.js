@@ -93,6 +93,11 @@ function initLayoutButtons() {
   comfort.addEventListener("click", () => document.body.classList.remove("is-dense"));
 }
 
+function getMethodsForSection(section) {
+  const hideMethods = section.hideMethods || [];
+  return METHODS.filter(m => !hideMethods.includes(m.key));
+}
+
 function main() {
   const root = document.getElementById("samplesRoot");
   root.innerHTML = "";
