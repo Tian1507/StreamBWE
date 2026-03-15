@@ -42,24 +42,28 @@ const SECTIONS = [
     id: "24kto48k",
     title: "IV. 24 kHz to 48 kHz",
     dir: "24kto48k",
+    hideMethods: ["BBWE"],
     samples: ["p360_324", "p364_198", "p364_256", "p376_199", "s5_186"],
   },
   {
     id: "16kto48k",
     title: "V. 16 kHz to 48 kHz",
     dir: "16kto48k",
+    hideMethods: ["BBWE"],
     samples: ["p360_249", "p362_054", "p364_089", "p364_282", "p364_297"],
   },
   {
     id: "12kto48k",
     title: "VI. 12 kHz to 48 kHz",
     dir: "12kto48k",
+    hideMethods: ["BBWE"],
     samples: ["p362_232", "p376_093", "p376_164", "s5_307", "s5_329"],
   },
   {
     id: "8kto48k",
     title: "VII. 8 kHz to 48 kHz",
     dir: "8kto48k",
+    hideMethods: ["BBWE"],
     samples: ["p361_033", "p361_358", "p376_148", "s5_212", "s5_390"],
   },
 ];
