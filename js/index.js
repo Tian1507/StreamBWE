@@ -11,24 +11,31 @@ function el(tag, attrs = {}, children = []) {
 }
 
 function buildAssetPath(sectionDir, methodKey, sampleKey, ext) {
-  // e.g. "../wavs/8kto16k/Narrowband/p362_225.png"
   return `${BASE_PATH}/${sectionDir}/${methodKey}/${sampleKey}.${ext}`;
 }
 
-function renderSampleTable(sectionDir, sampleKey) {
+function getMethodsForSection(section) {
+  const hideMethods = section.hideMethods || [];
+  return METHODS.filter(m => !hideMethods.includes(m.key));
+}
+
+// 这里改：传入整个 section
+function renderSampleTable(section, sampleKey) {
+  const methods = getMethodsForSection(section);
+
   const thead = el("thead", {}, [
-    el("tr", {}, METHODS.map(m => el("th", {}, [m.label])))
+    el("tr", {}, methods.map(m => el("th", {}, [m.label])))
   ]);
 
-  const imgRow = el("tr", {}, METHODS.map(m => {
-    const src = buildAssetPath(sectionDir, m.key, sampleKey, "png");
+  const imgRow = el("tr", {}, methods.map(m => {
+    const src = buildAssetPath(section.dir, m.key, sampleKey, "png");
     return el("td", {}, [
       el("img", { class: "demo-img", src, loading: "lazy", alt: `${m.label}-${sampleKey}` })
     ]);
   }));
 
-  const audioRow = el("tr", {}, METHODS.map(m => {
-    const src = buildAssetPath(sectionDir, m.key, sampleKey, "wav");
+  const audioRow = el("tr", {}, methods.map(m => {
+    const src = buildAssetPath(section.dir, m.key, sampleKey, "wav");
     const audio = el("audio", { class: "demo-audio", controls: "" }, [
       el("source", { src, type: "audio/wav" })
     ]);
@@ -59,8 +66,13 @@ function renderSection(section) {
 
   section.samples.forEach((sampleKey, idx) => {
     const card = el("div", { class: "sample-card" }, [
-      el("h3", { class: "title is-5" }, [`Sample ${idx + 1}`, " ", el("span", { class: "has-text-grey is-size-7" }, [`(${sampleKey})`])]),
-      renderSampleTable(section.dir, sampleKey),
+      el("h3", { class: "title is-5" }, [
+        `Sample ${idx + 1}`,
+        " ",
+        el("span", { class: "has-text-grey is-size-7" }, [`(${sampleKey})`])
+      ]),
+      // 这里改：传 section，不是 section.dir
+      renderSampleTable(section, sampleKey),
     ]);
     block.appendChild(card);
   });
@@ -91,11 +103,6 @@ function initLayoutButtons() {
 
   dense.addEventListener("click", () => document.body.classList.add("is-dense"));
   comfort.addEventListener("click", () => document.body.classList.remove("is-dense"));
-}
-
-function getMethodsForSection(section) {
-  const hideMethods = section.hideMethods || [];
-  return METHODS.filter(m => !hideMethods.includes(m.key));
 }
 
 function main() {
